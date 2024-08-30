@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/head :: head">
+<head th:replace="fragments/head :: head">
     <style>
         body {
             background-image: url('\images\cloud_bg.jpg'); /* Replace with your actual image path */
@@ -71,7 +71,7 @@
 
 <div>
 
-<div  th:replace="/fragments/header :: header"></div>
+<div  th:replace="fragments/header :: header"></div>
 
 <div  class="container" style="background-color: rgba(255, 255, 255, 0.9); border-radius: 20px; padding: 20px; max-width: 600px; margin: 50px auto; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
 
@@ -96,7 +96,7 @@
 
 
 
-<footer th:replace="/fragments/footer :: footer"></footer>
+<footer th:replace="fragments/footer :: footer"></footer>
 
 </body>
 </html>
