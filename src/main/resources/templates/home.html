@@ -1,9 +1,8 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="/fragments/head :: head"></head>
 
-<body>
+<body style="background-color: #c9e9ed;">
 
 <div th:replace="/fragments/header :: header"></div>
 
@@ -16,4 +15,23 @@
 <footer th:replace="/fragments/footer :: footer"></footer>
 
 </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+
+<body style="background-image: url('/images/cloud_bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+
+    <div th:replace="fragments/posts :: posts(posts=${posts})"></div>
+
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</body>
 </html>
+

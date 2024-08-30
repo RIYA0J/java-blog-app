@@ -20,3 +20,4 @@ public class SpringMvcBlogAppApplication {
         return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
     }
 }
+

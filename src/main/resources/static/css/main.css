@@ -2,9 +2,17 @@
 
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.8); /* Translucent background with 80% opacity */
     overflow: hidden;
+    max-width: 950px;
+    text-align: center;
+    margin: auto;
+    border-radius: 30px;
+    padding: 10px 20px; /* Adds some padding for spacing inside the nav */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds a soft shadow for a 3D effect */
+    backdrop-filter: blur(5px); /* Optional: adds a blur effect to the background */
 }
+
 
 /* Style the links inside the navigation bar */
 .topnav a {
@@ -14,6 +22,8 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    
+    
 }
 
 /* Change the color of links on hover */
@@ -31,11 +41,12 @@
 
 .topnav a.right {
     float: right;
+    
 }
 
 body {
     font-family: Arial;
-    padding: 0;
+    padding: 20px;
     background: #f1f1f1;
     width: 80%;
     margin: auto;
@@ -44,14 +55,17 @@ body {
 
 /* Header/Blog Title */
 .header {
-    padding: 10px;
+    padding: 0;
     font-size: 25px;
     text-align: center;
-    background: white;
+    background: rgb(205, 228, 238);
+    border-radius: 20px;
+    width: 80%;
+    margin: auto;
 }
 
 .container {
-    /*width: 80%;*/
+    width: 80%;
     margin: auto;
 }
 
@@ -72,7 +86,7 @@ body {
 }
 
 .post {
-    background-color: white;
+    background-color: rgb(241, 227, 240);
     padding: 20px;
     margin-top: 20px;
     text-align: center;
@@ -120,6 +134,7 @@ footer {
     text-align: center;
     background: #ddd;
     margin-top: 20px;
+    border-radius: 20px;
 }
 
 .alert-red {

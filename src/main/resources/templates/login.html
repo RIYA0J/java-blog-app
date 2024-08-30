@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="/fragments/head :: head"></head>
+<head th:replace="fragments/head :: head"></head>
 
-<body>
+<body style="background-image: url('/images/cloud_bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
 
-<div th:replace="/fragments/header :: header"></div>
+<div th:replace="fragments/header :: header"></div>
 
-<div class="container">
+<div class="container-log">
+
     <div th:if="${param.error}">
         <p class="alert-red">Invalid username and/or password</p>
     </div>
     <div th:if="${param.logout}">
-        <p class="alert-green"> You have been successfully logged out</p>
+        <p class="alert-green">You have been successfully logged out</p>
+    </div>
+    <div th:if="${param.signupSuccess}">
+        <p class="alert-green">Sign up successful, please login</p>
     </div>
 
     <form th:action="@{/login}" method="post">
+        <h1 style="margin-left: 140px;"><b>Log In</b></h1>
         <div>
             <input type="text" name="username" id="username" placeholder="UserName" required="true" autofocus="true"/>
         </div>
         <div>
             <input type="password" name="password" id="password" placeholder="Password" required="true"/>
         </div>
-        <div class="align-center">
-            <label for="remember-me">Remember Me</label>
-            <input type="checkbox" id="remember-me" name="remember-me">
-        </div>
+        <div class="align-center"></div>
         <div>
             <input type="submit" class="green-btn blue-btn" value="Login"/>
         </div>
-
     </form>
 
 </div>
 
-<footer th:replace="/fragments/footer :: footer"></footer>
+<footer th:replace="fragments/footer :: footer"></footer>
 
 </body>
 </html>

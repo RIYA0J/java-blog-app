@@ -1,27 +1,100 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/head :: head"></head>
-<body>
+<head th:replace="/fragments/head :: head">
+    <style>
+        body {
+            background-image: url('\images\cloud_bg.jpg'); /* Replace with your actual image path */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
 
-<div th:replace="/fragments/header :: header"></div>
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Translucent white background */
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
 
-<div class="container">
+        h2 {
+            padding: 20px 0;
+            text-align: center;
+            color: #4CAF50; /* Green color */
+            font-weight: bold;
+        }
 
-    <h2>Write new comment</h2>
-    
-    <form action="#"
-          th:action="@{'/comment'}"
-          th:object="${comment}"
-          method="post">
-        <label>
-            <div class="alert-red" th:if="${#fields.hasErrors('body')}" th:errors="*{body}">Body Error</div>
-            <textarea th:field="*{body}" placeholder="Write something valuable"></textarea>
-        </label>
-        <div>
-            <button class="green-btn" type="submit">Send</button>
-        </div>
-    </form>
+        label {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            resize: vertical;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .blue-btn {
+            background-color: #030403; /* Green color */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: block;
+            margin: 0 auto;
+            transition: background-color 0.3s ease;
+        }
+
+        .blue-btn:hover {
+            background-color: #010007; /* Darker green on hover */
+        }
+
+        .alert-red {
+            color: #FF0000;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body style="background-image: url('/images/cloud_bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+
+<div>
+
+<div  th:replace="/fragments/header :: header"></div>
+
+<div  class="container" style="background-color: rgba(255, 255, 255, 0.9); border-radius: 20px; padding: 20px; max-width: 600px; margin: 50px auto; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
+
+<h2 style="padding: 20px 0; text-align: center; color: #0a0a0a; font-weight: bold;">Write new comment</h2>
+
+<form action="#"
+      th:action="@{'/comment'}"
+      th:object="${comment}"
+      method="post">
+    <label style="display: block; margin-bottom: 15px;">
+        <div class="alert-red" th:if="${#fields.hasErrors('body')}" th:errors="*{body}" style="color: #FF0000; font-size: 14px; margin-bottom: 10px;">Body Error</div>
+        <textarea th:field="*{body}" placeholder="Write something valuable" style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #ccc; font-size: 16px; resize: vertical; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);"></textarea>
+    </label>
+    <div>
+        <button class="blue-btn" type="submit" style="background-color: #0f0f0f; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 18px; display: block; margin: 0 auto; transition: background-color 0.3s ease;">
+            Send
+        </button>
+    </div>
+</form>
 </div>
+</div>
+
+
 
 <footer th:replace="/fragments/footer :: footer"></footer>
 

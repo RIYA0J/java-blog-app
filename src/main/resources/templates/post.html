@@ -1,39 +1,108 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="/fragments/head :: head"></head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head :: head">
+    <style>
+        /* Make the entire container translucent */
+        .container {
+            background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+        }
 
-<div th:replace="/fragments/header :: header"></div>
+        /* Make the post section translucent */
+        .post {
+            background-color: rgba(145, 145, 225, 0.8); /* Light blue with 80% opacity */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Make the header translucent */
+        header {
+            background-color: rgba(255, 255, 255, 0.7); /* White with 70% opacity */
+        }
+
+        /* Enhanced button styling */
+        .purple-btn {
+            background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+            color: white;
+            border: none;
+            border-radius: 25px; /* Rounded corners */
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            transition: background 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+        }
+
+        /* Hover effect */
+        .purple-btn:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb); /* Reverse gradient */
+            transform: translateY(-3px); /* Slight lift on hover */
+        }
+
+        /* Focus effect */
+        .purple-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.5); /* Focus ring */
+        }
+    </style>
+</head>
+
+<body style="background-image: url('/images/cloud_bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+
+<div th:replace="fragments/header :: header"></div>
 
 <div class="container">
-    <div class="post">
+    <div class="post" style="background-color: rgba(248, 252, 253, 0.8); border-radius: 10px;">
+
+        <!-- Display Post Title -->
         <h2 th:text="${post.title}">Title</h2>
-        <h5 th:text="'Published on ' + ${#dates.format(post.creationDate, 'yyyy MMMM dd')} + ' by ' + ${post.user.username}">Creation date and by whom</h5>
-        <div class="img">Image</div>
-        <p th:text="${post.body}">body text</p>
+        
+        <!-- Display Post Creation Date -->
+        <h5 th:text="'Published on ' + ${#dates.format(post.creationDate, 'yyyy MMMM dd')}">Creation date</h5>
+        
+        <!-- Display Post Image (if available) -->
+        <div class="img" style="width: 300px; height: 200px; overflow: hidden; border-radius: 8px;">
+            <img 
+                th:src="${post.imageUrl != null ? post.imageUrl : '/images/blog_image.jpg'}" 
+                alt="Post Image"
+                style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+        
+        <!-- Display Post Body Content -->
+        <p th:text="${post.body}">Body text</p>
+
+        <!-- Edit Button, visible only if user is authenticated and is the post owner -->
         <div class="align-right" sec:authorize="isAuthenticated()" th:if="${isOwner}">
             <a th:href="@{'/editPost/{id}'(id=${post.id})}">
                 <button class="green-btn blue-btn" type="button">Edit</button>
             </a>
         </div>
     </div>
-    <div class="comments">
+
+    <!-- Comments Section -->
+    <div class="comments" style="background-color: rgba(255, 255, 255, 0.6); padding: 10px; border-radius: 8px;"> <!-- Make comments section translucent -->
         <h2>Comments</h2>
+
+        <!-- Display each comment -->
         <div class="comment" th:each="comment : ${post.comments}">
-            <h5 th:text="'Commented on ' + ${#dates.format(post.creationDate, 'yyyy-MM-dd')} + ' by ' + ${comment.user.username}">Comment date and by whom</h5>
+            <h5 th:text="'Commented on ' + ${#dates.format(comment.creationDate, 'yyyy-MM-dd')} + ' by ' + ${comment.user.username}">Comment date and by whom</h5>
             <p th:text="${comment.body}">Body</p>
         </div>
     </div>
+
+    <!-- Enhanced Comment Button -->
     <div class="align-center">
         <a th:href="@{'/comment/{id}'(id=${post.id})}">
-            <button class="green-btn" type="button">Comment Post</button>
+            <button class="purple-btn" type="button">Comment Post</button>
         </a>
     </div>
 </div>
 
-<footer th:replace="/fragments/footer :: footer"></footer>
+<footer th:replace="fragments/footer :: footer"></footer>
 
 </body>
 </html>
